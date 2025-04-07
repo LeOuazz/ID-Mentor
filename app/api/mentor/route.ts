@@ -1,8 +1,8 @@
 // app/api/mentor/route.ts
 import { NextRequest } from "next/server";
-import { disclaimers } from "@/lib/disclaimers";
-import { getUserDomainSummary } from "@/lib/memory";
-import { callGeminiStream } from "@/lib/vapi";
+import { disclaimers } from "../../../lib/disclaimers";
+import { getUserDomainSummary } from "../../../lib/memory";
+import { callGeminiStream } from "../../../lib/vapi";
 import { Readable } from "stream";
 
 export async function POST(req: NextRequest) {
