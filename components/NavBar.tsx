@@ -17,7 +17,7 @@ export default function NavBar() {
         >
             {/* Brand / Logo */}
             <Link href="/" className="text-xl font-semibold text-gray-800">
-                AI Mentor
+                ID Mentor
             </Link>
 
             {/* Navigation Links */}
@@ -29,10 +29,10 @@ export default function NavBar() {
                     Features
                 </Link>
                 <Link
-                    href="/aimentor"
+                    href="/mentors"
                     className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                    Mentor
+                    Mentors
                 </Link>
                 <Link
                     href="/contact"

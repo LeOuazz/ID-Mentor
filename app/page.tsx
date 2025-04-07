@@ -17,9 +17,17 @@ export default function LandingPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl md:text-5xl font-semibold text-gray-800 text-center z-10"
+                    className="text-4xl md:text-5xl font-semibold text-gray-800 text-center z-10 flex gap-2 flex-wrap justify-center"
                 >
-                    Welcome to <span className="text-blue-600">AI Mentor</span>
+                    Welcome to ID {" "}
+                    <motion.span
+                        initial={{ clipPath: "inset(0 100% 0 0)" }}
+                        animate={{ clipPath: "inset(0 0% 0 0)" }}
+                        transition={{ duration: 1.2, ease: "easeInOut", delay: 0.6 }}
+                        className="text-blue-600 inline-block"
+                    >
+                        Mentor
+                    </motion.span>
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -34,7 +42,7 @@ export default function LandingPage() {
                 </motion.p>
 
                 {/* Get Started Button */}
-                <Link href="/aimentor" className="z-10 mt-6">
+                <Link href="/features" className="z-10 mt-6">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -43,7 +51,7 @@ export default function LandingPage() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md font-semibold"
                     >
-                        Get Started
+                        Features
                     </motion.button>
                 </Link>
             </section>

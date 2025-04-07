@@ -41,38 +41,38 @@ export default function AIMentorPage() {
     }, []);
 
     // SSE call for partial AI responses
-    async function callSSE(userText: string) {
-        try {
-            const resp = await fetch("/api/stream", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userText }),
-            });
-            if (!resp.ok) throw new Error("SSE request failed");
+    async function callMentor(domain: string, userText: string) {
+        const res = await fetch("/api/mentor", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userId: currentUser?.uid,
+                domain,
+                userMessage: userText
+            })
+        });
+        if (!res.ok) throw new Error("Mentor SSE error");
+        // SSE reading
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let partialBuffer = "";
 
-            const reader = (resp.body as unknown as ReadableStream<Uint8Array>).getReader();
-            const decoder = new TextDecoder();
-            let partialBuffer = "";
+        while(true){
+            const { value, done } = await reader.read();
+            if (done) break;
+            partialBuffer += decoder.decode(value, {stream: true});
+            const events = partialBuffer.split("\n\n");
+            partialBuffer = events.pop() || "";
 
-            while (true) {
-                const { value, done } = await reader.read();
-                if (done) break;
-
-                partialBuffer += decoder.decode(value, { stream: true });
-                const events = partialBuffer.split("\n\n");
-                partialBuffer = events.pop() || "";
-
-                for (const e of events) {
-                    if (!e.trim()) continue;
-                    if (e.startsWith("data:")) {
-                        const chunk = e.replace("data: ", "");
-                        addMessage(`AI: ${chunk}`);
-                        speak(chunk); // read out loud
-                    }
+            for(const e of events){
+                if(!e.trim()) continue;
+                if(e.startsWith("data:")){
+                    const chunk = e.replace("data: ","");
+                    // display partial text, do TTS, etc
+                } else if(e.startsWith("event: done")){
+                    // done
                 }
             }
-        } catch (err) {
-            console.error("SSE error:", err);
         }
     }
 

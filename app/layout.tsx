@@ -3,8 +3,8 @@ import NavBar from '../components/NavBar'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'IDMentor Tailwind',
-    description: 'Voice-first AI with Tailwind + Next.js 15',
+    title: 'ID Mentor',
+    description: 'Your personal voice & text companion',
 }
 
 export default function RootLayout({

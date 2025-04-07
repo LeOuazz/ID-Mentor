@@ -79,7 +79,7 @@ export default function FeaturesPage() {
                 <p className="text-gray-500 text-sm mb-4">
                     Ready to see these features in action?
                 </p>
-                <Link href="/aimentor">
+                <Link href="/mentors">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
