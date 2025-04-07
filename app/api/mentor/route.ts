@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
         }
 
         const systemPrompt = `
-You are a holistic AI Mentor specialized in the domain: ${domain}.
+You are a holistic ID Mentor specialized in the domain: ${domain}.
 ${domainDisclaimer}
 Remember to be empathetic and personal, referencing user’s memory:
 ${summary}
